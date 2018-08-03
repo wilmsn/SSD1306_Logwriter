@@ -67,12 +67,7 @@ void SSD1306_OLED::begin(void) {
     sendCommand(0x40);
     sendCommand(SSD1306_DISPLAY_ALL_ON_RESUME);
     sendCommand(SSD1306_NORMAL_DISPLAY);
-	sendCommand(SSD1306_DISPLAY_ON);
-/*    setDisplayOff();
-    setBlackBackground();
-	setPageMode();
-	clear();
-    setDisplayOn(); */
+    sendCommand(SSD1306_DISPLAY_ON);
     setWhiteBackground();
     delay(500);
     setBlackBackground();	
