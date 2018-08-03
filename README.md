@@ -24,6 +24,8 @@ Example:
 	display.println("V");
 	
 Will produce this output in the last line of the display:
+
 	Test 56.8V
+	
 With the next display.print a new line will be written and you will find this text 
 on the secondlast line.
