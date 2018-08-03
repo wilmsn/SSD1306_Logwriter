@@ -16,9 +16,13 @@ Function:
 It's just a simple textfield with 8 lines (default). It works like the output 
 of the serial monitor. With print/println you will write to the last line.
 Example:
+
 	display.print("Test ");
+	
 	display.print(56.8);
+	
 	display.println("V");
+	
 Will produce this output in the last line of the display:
 	Test 56.8V
 With the next display.print a new line will be written and you will find this text 
