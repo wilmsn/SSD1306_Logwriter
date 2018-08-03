@@ -1,5 +1,5 @@
 # SSD1306_Logwriter
-A simple buffered Textdisplay on a 0.96" OLED display
+A simple buffered Textdisplay on a 0.96" OLED display on Arduino
 
 This is a library for monochrome OLEDs based on SSD1306 drivers
 
