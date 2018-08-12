@@ -139,7 +139,8 @@ void SSD1306_OLED::printBuffer(void) {
 	for (byte row=ssd1306_min_row; row < ssd1306_max_row; row++) {
 		setCursor(0,row);
 		for (byte col=0; col < ssd1306_max_col; col++) {
-			for(byte i = 0; i < 6; i++) {
+			sendData(0);
+			for(byte i = 0; i < 5; i++) {
 				sendData(pgm_read_byte(&myFont8x6[dispData[row][col] - 32][i]));
 			}
 			if ( myfont == font_8x8) {
@@ -176,7 +177,8 @@ size_t SSD1306_OLED::write(uint8_t c) {
 		retval = 1;
 		if (posInLine < ssd1306_max_col) {
 			dispData[ssd1306_max_row-1][posInLine]=c;
-			for(byte i = 0; i < 6; i++) {
+			sendData(0);
+			for(byte i = 0; i < 5; i++) {
 				sendData(pgm_read_byte(&myFont8x6[c - 32][i]));
 			}
 			if ( myfont == font_8x8) {
