@@ -27,7 +27,15 @@ This library is licensed under the GNU GPLv3 (https://www.gnu.org/licenses/gpl.h
 #ifndef _SSD1306_LOGWRITER_H_
 #define _SSD1306_LOGWRITER_H_
 
+#ifdef __AVR__
+  #include <avr/pgmspace.h>
+#endif
+
+#include <stdlib.h>
+
+#include <Wire.h>
 #include "Arduino.h"
+#include "Print.h"
 #include <SPI.h>
 
 #include <SSD1306_Logwriter_font.h>
@@ -76,25 +84,24 @@ This library is licensed under the GNU GPLv3 (https://www.gnu.org/licenses/gpl.h
 #define SSD1306_SET_PRECHARGE_PERIOD					0xD9
 #define SSD1306_SET_VCOM_DESELECT						0xDB
 
-class SSD1306_OLED
-{
+class SSD1306_OLED : public Print {
     private:
 		byte px, py, inv;
-		void setCursor(byte posX, byte posY);
 		void sendCommand(byte command);
 		void sendData(byte data);
-		void printChar(char pChar);
-		void printString(const char *data);
-		void printBuffer(void);
 		void scrollBuffer(void);
 		void setPageMode(void);
+		void setCursor(byte posX, byte posY);
+		size_t write(uint8_t c);
+		void printBuffer(void);
 	
 	public:
+/*		char * printBufferLine(byte line); */
 	    /* Constructor to use the full display */
 		SSD1306_OLED(void);
-	    /* Constructor to use the display from row*/
+	    /* Constructor to use the only a part of the display from row */
 		SSD1306_OLED(byte _ssd1306_min_row);
-	    /* Constructor to use the display only between min_row and max_row*/
+	    /* Constructor to use a part of the display only between min_row and max_row*/
 		SSD1306_OLED(byte _ssd1306_min_row, byte _ssd1306_max_row);
 		/* be sure to call begin() inside your setup block */
 		void begin(void);
@@ -102,16 +109,16 @@ class SSD1306_OLED
 		void setBlackBackground(void);
 		/* sets the background to white / inverts all Pixel if it was black before */
 		void setWhiteBackground(void);
+		/* switches the display off */
 		void setDisplayOff(void);
+		/* switches the display on */
 		void setDisplayOn(void);
+        /* selects the font to be used:
+           1 = 8*8 Font (default)
+		   2 = 8*6 Font    */
 		void setFont(byte _myfont);
+		/* Clear the display */
 		void clear(void);
-		void print(const char *data); 
-		void print(const float data, byte precision); 
-		void print(const int data);
-		void println(const char *data); 
-		void println(const float data, byte precision); 
-		void println(const int data);
 };
 
 #endif /* _SSD1306_LOGWRITER_H_ */
