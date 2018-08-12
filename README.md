@@ -8,7 +8,7 @@ this display can do!
 
 This Library has a very small Memory/RAM footprint (~377Byte)
 so you can combine it with other libraries and can still run it on an Arduino UNO.
-There is no graphic implemented and only 2 simple fixed fonts (8*8 and 8*6).
+There is no graphic implemented and only 2 simple fixed fonts (8x8 and 8x6).
 
 I just tested it with a 128x64 Display.
 
