@@ -103,7 +103,10 @@ class SSD1306_OLED : public Print {
 		SSD1306_OLED(byte _ssd1306_min_row);
 	    /* Constructor to use a part of the display only between min_row and max_row*/
 		SSD1306_OLED(byte _ssd1306_min_row, byte _ssd1306_max_row);
-		/* be sure to call begin() inside your setup block */
+#ifdef ESP8266
+        void begin(uint8_t _sda, uint8_t _scl);
+#endif
+        /* be sure to call begin() inside your setup block */
 		void begin(void);
 		/* sets the background to black / inverts all Pixel if it was white before */
 		void setBlackBackground(void);

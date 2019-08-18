@@ -28,7 +28,12 @@ SSD1306_OLED::SSD1306_OLED(byte _ssd1306_min_row, byte _ssd1306_max_row){
 	ssd1306_min_row=_ssd1306_min_row;
 	ssd1306_max_row=_ssd1306_max_row;
 }
-
+#ifdef ESP8266
+void SSD1306_OLED::begin(uint8_t _sda, uint8_t _scl) {
+    Wire.begin(_sda,_scl);
+    begin();
+}
+#endif
 void SSD1306_OLED::begin(void) {
 	sendCommand(SSD1306_DISPLAY_OFF);
     sendCommand(SSD1306_SET_DISPLAY_CLOCK_DIV_RATIO);
@@ -188,6 +193,9 @@ size_t SSD1306_OLED::write(uint8_t c) {
 		}
 		posInLine++;
 	}
+#ifdef ESP8266
+    delay(0);
+#endif    
 	return retval;
 }
 
